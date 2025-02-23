@@ -1,36 +1,39 @@
 import {unOrderedTree1} from "./Trees/unOrderedTree.js"
-
+/**
+ * 1) Traverse down left side of tree and push visited nodes to stack until null is found.
+ * 2) If right node is found, pop from stack and add value to result. Continue to look for left nodes if they exist
+ * 3) If Left nor Right node exists this indicates a leaf. Pop from stack and push to result. Continue to pop from the stack
+ *    (while adding values to result) and check if popped nodes contain a right node. Once found add val to result
+ *    and set this node's right node as curr and continue step 1.
+ * 
+ */
 var inOrderTraversal = function(root) {
     if (!root) return []
     let res = []
     let stack = [root]
     let curr = root
     while(curr) {
-        
         if(curr.left) {
-            //add left node onto the stack and update curr pointer
             curr = curr.left
             stack.push(curr)
         } else if(curr.right) {
-            // if a left node does not exist pop from stack and push to result
+            // Left node does not exist. Pop from stack and push to result
             res.push(stack.pop().val)
             curr = curr.right
             stack.push(curr)
         } else {
-            // if a left nodes does not exist pop from stack and push to result
+            // Left node does not exist. Pop from stack and push to result
             res.push(stack.pop().val)
-            //traverse back up the stack in a while loop until a right node is found. if a right node is found continue with outer while loop. This will traverse back down to the left side
+            //Traverse back up the stack until a right node is found. If a right node is found, continue with outer while loop.
             while(stack.length > 0 && !stack[stack.length-1]?.right) {
                 res.push(stack.pop().val)
             }
-            //pop off item and set it to curr
             curr = stack.pop()
             if(curr) {
                 res.push(curr.val)
                 curr = curr.right
                 stack.push(curr)
             }
-            
         }
     }
     return res
@@ -45,7 +48,6 @@ var inOrderTraversalRecursive = function(root) {
         if(!node) {
             return
         }
-    
         findInOrder(node.left)
         res.push(node.val)
         findInOrder(node.right)
@@ -59,7 +61,7 @@ let inOrderTraversalResult = inOrderTraversal(unOrderedTree1)
 let inOrderTraversalRecursiveResult = inOrderTraversalRecursive(unOrderedTree1)
 
 console.log("inOrderTraversal Result: ", inOrderTraversalResult.toString())
-console.log("inOrderTraversal Result: ", inOrderTraversalRecursiveResult.toString())
+console.log("inOrderRecursiveTraversal Result: ", inOrderTraversalRecursiveResult.toString())
 
 console.assert(expected.every(val => inOrderTraversalResult.includes(val)), "Arrays do not match")
 console.assert(expected.every(val => inOrderTraversalRecursiveResult.includes(val)), "Arrays do not match")
