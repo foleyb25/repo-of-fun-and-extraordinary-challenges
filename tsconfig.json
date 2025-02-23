@@ -9,7 +9,7 @@
       "forceConsistentCasingInFileNames": true,
       "outDir": "./dist",
       "rootDir": "./src",
-      "lib": ["ES2016", "DOM"],
+      "lib": ["ES2017", "DOM"],
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]
