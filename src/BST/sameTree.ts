@@ -1,7 +1,7 @@
 import TreeNode from "./Classes/TreeNode.js"
 import { unOrderedTree1 } from "./Trees/unOrderedTree.js";
 
-var isSameTree = function(p: TreeNode, q: TreeNode) {
+var isSameTree = function(p: TreeNode, q: TreeNode): (TreeNode | boolean) {
     if(!p && q) return false
     if(!q && p) return false
     if (!p && !q) return true
@@ -10,10 +10,10 @@ var isSameTree = function(p: TreeNode, q: TreeNode) {
     if(!p.left && q.left) return false
     if(!p.right && q.right) return false
     
-    let qStack: (TreeNode | undefined)[] = []
-    let pStack: (TreeNode | undefined)[] = []
-    let pCurr: (TreeNode | undefined) = p
-    let qCurr: (TreeNode | undefined) = q
+    let qStack: (TreeNode | undefined | null)[] = []
+    let pStack: (TreeNode | undefined | null)[] = []
+    let pCurr: (TreeNode | undefined | null) = p
+    let qCurr: (TreeNode | undefined | null) = q
     
 
     while( (qStack.length > 0 || qCurr) && (pStack.length > 0 || pCurr) ) {

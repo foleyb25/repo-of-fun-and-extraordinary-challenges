@@ -14,10 +14,10 @@ import TreeNode from "./Classes/TreeNode.js"
  * 5) Pop off the memoStack and update the total with the value associated with popped node. Set current to right and increment.
       Repeat step 1 and so on.
  */
-var maxDepth = function(root: TreeNode) {
+var maxDepth = function(root: TreeNode): number {
     if(!root) return 0
     let memoStack: Map<TreeNode,number>[] = []
-    let curr: TreeNode = root
+    let curr: (TreeNode | null) = root
     let maximum: (number) = -1
     let total: (number) = 1
     let memo : (Map<TreeNode,number> | undefined);
@@ -50,9 +50,10 @@ var maxDepth = function(root: TreeNode) {
             total++ // increment since we are traversing to the next node
         }
     }
+    return maximum
 };
 
-function maxDepthRecursive(node: TreeNode): number {
+function maxDepthRecursive(node: (TreeNode | null) ): number {
     if(!node) {
         return 0
     }

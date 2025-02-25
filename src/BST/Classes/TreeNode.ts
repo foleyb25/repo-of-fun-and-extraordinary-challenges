@@ -12,10 +12,10 @@
  */
 export default class TreeNode {
     val: any
-    left: TreeNode
-    right: TreeNode
+    left: (TreeNode | null)
+    right: (TreeNode | null)
 
-    constructor(val: any = 0, left: TreeNode = undefined!, right: TreeNode = undefined!) {
+    constructor(val: any = 0, left: TreeNode = null!, right: TreeNode = null!) {
         this.val = val
         this.left = left
         this.right = right

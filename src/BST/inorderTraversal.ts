@@ -9,11 +9,11 @@ import TreeNode from "./Classes/TreeNode.js"
  *    and set this node's right node as curr and continue step 1.
  * 
  */
-var inOrderTraversal = function(root: TreeNode): number[] {
+var inOrderTraversal = function(root: (TreeNode | null)): number[] {
     if (!root) return []
     let res: number[] = []
-    let stack: TreeNode[] = [root]
-    let curr: (TreeNode | undefined) = root
+    let stack: (TreeNode| undefined | null)[] = [root]
+    let curr: (TreeNode | undefined | null) = root
     while(curr) {
         if(curr.left) {
             curr = curr.left
@@ -46,7 +46,7 @@ var inOrderTraversal = function(root: TreeNode): number[] {
  */
 var inOrderTraversalRecursive = function(root : TreeNode): number[] {
     let res: number[] = []
-    function findInOrder(node: TreeNode) {
+    function findInOrder(node: (TreeNode | null) ) {
         if(!node) {
             return
         }

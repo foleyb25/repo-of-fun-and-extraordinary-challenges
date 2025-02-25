@@ -15,17 +15,17 @@ import { symmetricTree1 } from "./Trees/symmetricTree.js";
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isSymmetric = function(root: TreeNode) {
+var isSymmetric = function(root: (TreeNode | null)) {
     if(!root) return true
     if(!root.left && !root.right) return true
     if(!root.left && root.right) return false
     if(!root.right && root.left) return false
-    if(root.left.val !== root.right.val) return false
+    if(root.left?.val !== root.right?.val) return false
     
     let lq: Array<TreeNode> = []
     let rq: Array<TreeNode> = []
-    let lNode: (TreeNode | undefined) = root.left
-    let rNode: (TreeNode | undefined) = root.right 
+    let lNode: (TreeNode | null | undefined) = root.left
+    let rNode: (TreeNode | null | undefined) = root.right 
 
     while((lNode || lq.length > 0) && (rNode || rq.length > 0)) {
         while(lNode && rNode) {
@@ -49,7 +49,7 @@ var isSymmetric = function(root: TreeNode) {
 
 var isSymmetricRecursive = function(root: TreeNode) {
     if(!root) return true
-    const isReflective = (l: TreeNode, r: TreeNode): boolean => {
+    const isReflective = (l: (TreeNode | null), r: (TreeNode | null)): boolean => {
         if(!l && !r) return true
         if(!l || !r || l.val !== r.val) return false
 
