@@ -13,12 +13,10 @@ import TreeNode from "./Classes/TreeNode.js"
  * @return {TreeNode}
  */
 var sortedArrayToBST = function(nums: Array<number>): (TreeNode | null) {
-    console.log("HELLO")
     let root: (TreeNode | null) = null; //will keep reference to root outside of while loop so we can return it
     let stack: Array<[TreeNode | null, number, number]> = [[null, 0, nums.length-1]]
     while(stack.length) {
-        console.log("Inside while loop")
-        let [currNode, start, end]: [ TreeNode | null, number, number] = stack.shift()!
+        let [currNode, start, end]: [ TreeNode | null, number, number] = stack.pop()!
         if(start > end) continue
         let mid = (start+end) >> 1
         let node = new TreeNode(nums[mid])
