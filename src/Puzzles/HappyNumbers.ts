@@ -19,3 +19,5 @@ var isHappy = function(n: number) {
         n = sum
     }
 };
+
+console.log(isHappy(19))
